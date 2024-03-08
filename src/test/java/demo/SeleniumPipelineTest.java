@@ -10,8 +10,10 @@ public class SeleniumPipelineTest {
 
     @Test
     public void openSeleniumAndNavigateToGoogle(){
+        System.out.println("test start");
         WebDriverManager.chromedriver().setup();
         var driver =  new ChromeDriver();
+        System.out.println("before browser open");
         driver.get("https://google.com");
         var element = driver.findElement(By.id("APjFqb"));
         Assert.assertTrue(element.isDisplayed());
