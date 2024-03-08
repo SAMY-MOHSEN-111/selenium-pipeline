@@ -6,10 +6,13 @@
 trigger:
 - main
 
-pool:
-  vmImage: ubuntu-latest
-
 steps:
+- task: Bash@3
+  inputs:
+      targetType: 'inline'
+      script: |
+        docker run -d -p 4444:4444 -p 7900:7900 --shm-size="2g" selenium/standalone-chrome:4.18.1-20240224
+
 - task: Maven@4
   inputs:
       mavenPomFile: 'pom.xml'
@@ -19,4 +22,4 @@ steps:
       jdkArchitectureOption: 'x64'
       publishJUnitResults: true
       testResultsFiles: '**/TEST-*.xml'
-      goals: 'package'
+      goals: 'test'
