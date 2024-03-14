@@ -15,7 +15,7 @@ public class Screenshot {
         var camera = (TakesScreenshot) driver;
         File screenshot = camera.getScreenshotAs(OutputType.FILE);
         var uuid = UUID.randomUUID();
-        var screenshotsFolder = System.getenv("SCREENSHOTSPATH");
+        var screenshotsFolder = System.getenv("SCREENSHOTS_PATH");
 //        Files.move(screenshot.toPath(), new File("src/main/resources/screenshots/" + uuid + ".jpg").toPath());
         var screenshotPath = screenshotsFolder + "/" + uuid + ".jpg";
         System.out.println(screenshotPath);
