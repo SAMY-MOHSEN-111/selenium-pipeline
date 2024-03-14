@@ -12,7 +12,8 @@ import java.util.UUID;
 
 public class Screenshot {
     public static void takeScreenshot(WebDriver driver) throws IOException {
-        var screenshotsFolder = System.getenv("BUILD_ARTIFACTSTAGINGDIRECTORY");
+        var local = true;
+        var screenshotsFolder = local ? "src/main/resources/screenshots" : System.getenv("BUILD_ARTIFACTSTAGINGDIRECTORY");
 
         var camera = (TakesScreenshot) driver;
         File screenshot = camera.getScreenshotAs(OutputType.FILE);
