@@ -14,6 +14,7 @@ steps:
         docker run -d -p 4444:4444 -p 7900:7900 --shm-size="2g" selenium/standalone-chrome:4.18.1-20240224
         export screenshotsPath='$(Build.ArtifactStagingDirectory)'
         echo $screenshotsPath
+        printenv
 - task: Maven@4
   inputs:
       mavenPomFile: 'pom.xml'
