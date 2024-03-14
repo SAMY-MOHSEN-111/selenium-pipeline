@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
-<suite name="MyTestSuite" thread-count="3" parallel="tests">
+<suite name="MyTestSuite" thread-count="24" parallel="tests">
     <test name="ChromeTests">
         <parameter name="browser" value="chrome"/>
         <classes>
