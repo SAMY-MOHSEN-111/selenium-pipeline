@@ -17,7 +17,7 @@ public class Screenshot {
         var uuid = UUID.randomUUID();
         var screenshotsFolder = System.getenv("SCREENSHOTSPATH");
 //        Files.move(screenshot.toPath(), new File("src/main/resources/screenshots/" + uuid + ".jpg").toPath());
-        var screenshotPath = screenshotsFolder + uuid + ".jpg";
+        var screenshotPath = screenshotsFolder + "/" + uuid + ".jpg";
         System.out.println(screenshotPath);
         Files.move(screenshot.toPath(), new File(screenshotPath).toPath());
     }
