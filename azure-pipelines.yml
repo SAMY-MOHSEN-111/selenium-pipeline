@@ -7,31 +7,9 @@ trigger:
 - main
 
 steps:
-- task: Bash@3
-  inputs:
-      targetType: 'inline'
-      script: |
-        docker network create grid
-        docker run -d -p 4442-4444:4442-4444 --net grid --name selenium-hub selenium/hub:4.18.1-20240224
-        docker run -d --net grid -e SE_EVENT_BUS_HOST=selenium-hub \
-          --shm-size="2g" \
-          -e SE_EVENT_BUS_PUBLISH_PORT=4442 \
-          -e SE_EVENT_BUS_SUBSCRIBE_PORT=4443 \
-          selenium/node-chrome:4.18.1-20240224
-        docker run -d --net grid -e SE_EVENT_BUS_HOST=selenium-hub \
-          --shm-size="2g" \
-          -e SE_EVENT_BUS_PUBLISH_PORT=4442 \
-          -e SE_EVENT_BUS_SUBSCRIBE_PORT=4443 \
-          selenium/node-edge:4.18.1-20240224
-        docker run -d --net grid -e SE_EVENT_BUS_HOST=selenium-hub \
-          --shm-size="2g" \
-          -e SE_EVENT_BUS_PUBLISH_PORT=4442 \
-          -e SE_EVENT_BUS_SUBSCRIBE_PORT=4443 \
-          selenium/node-firefox:4.18.1-20240224
+- script: docker-compose -f docker-compose.yml up -d
+  displayName: 'Run Docker Compose'
 
-        export ASSETS='$(Build.ArtifactStagingDirectory)'
-        echo $ASSETS
-        printenv
 - task: Maven@4
   inputs:
       mavenPomFile: 'pom.xml'
